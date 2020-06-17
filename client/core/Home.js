@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -38,6 +39,9 @@ export default function Home(){
           <Typography variant="h6" className={classes.title}>
             Home Page
           </Typography>
+          <Link to="/users/">Users</Link> | 
+          <Link to="/signup/">Signup</Link> | 
+          <Link to="/signin/">Signin</Link>
           <CardMedia className={classes.media} image={unicornbikeImg} title="Unicorn Bicycle"/>
           <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo by <a href="https://unsplash.com/@boudewijn_huysmans" target="_blank" rel="noopener noreferrer">Boudewijn Huysmans</a> on Unsplash</Typography>
           <CardContent>
