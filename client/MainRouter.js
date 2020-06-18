@@ -7,9 +7,11 @@ import Signin from './auth/Signin'
 import EditProfile from './user/EditProfile'
 import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
+import Menu from './core/Menu'
 
 const MainRouter = () => {
     return (<div>
+      <Menu/>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/users" component={Users}/>
