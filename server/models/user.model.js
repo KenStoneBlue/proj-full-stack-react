@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  educator: {
+    type: Boolean,
+    default: false
+  },
   photo: {
     data: Buffer,
     contentType: String
