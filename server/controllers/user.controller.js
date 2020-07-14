@@ -110,6 +110,16 @@ const photo = (req, res, next) => {
   next()
 }
 
+const isEducator = (req, res, next) => {
+  const isEducator = req.profile && req.profile.educator
+  if (!isEducator) {
+    return res.status('403').json({
+      error: "User is not an educator"
+    })
+  }
+  next()
+}
+
 const defaultPhoto = (req, res) => {
   return res.sendFile(process.cwd()+profileImage)
 }
@@ -190,6 +200,7 @@ export default {
   remove,
   update,
   photo,
+  isEducator
   defaultPhoto,
   addFollowing,
   addFollower,

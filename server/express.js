@@ -9,6 +9,8 @@ import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 import postRoutes from './routes/post.routes'
+import courseRoutes from './routes/course.routes'
+import enrollmentRoutes from './routes/enrollment.routes'
 
 // modules for server side rendering
 import React from 'react'
@@ -45,6 +47,8 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', postRoutes)
+app.use('/', courseRoutes)
+app.use('/', enrollmentRoutes)
 
 app.get('*', (req, res) => {
   const sheets = new ServerStyleSheets()
