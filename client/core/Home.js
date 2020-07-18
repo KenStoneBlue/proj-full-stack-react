@@ -149,8 +149,6 @@ export default function Home({history}){
                              : (<Typography variant="body1" className={classes.noTitle}>No new courses.</Typography>)
         }
       </Card>
-    </div>
-      <div className={classes.root}>
         { !defaultPage &&
           <Grid container spacing={8}>
             <Grid item xs={12}>

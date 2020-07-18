@@ -200,7 +200,7 @@ export default {
   remove,
   update,
   photo,
-  isEducator
+  isEducator,
   defaultPhoto,
   addFollowing,
   addFollower,
