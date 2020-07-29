@@ -4,28 +4,30 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
-import Library from '@material-ui/icons/LocalLibrary'
 import Button from '@material-ui/core/Button'
 import auth from './../auth/auth-helper'
 import {Link, withRouter} from 'react-router-dom'
+import CartIcon from '@material-ui/icons/ShoppingCart'
+import Badge from '@material-ui/core/Badge'
+import cart from './../cart/cart-helper'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
-    return {color: '#ff0066'}
+    return {color: '#bef67a'}
   else
     return {color: '#ffffff'}
 }
 const isPartActive = (history, path) => {
   if (history.location.pathname.includes(path))
-    return {color: '#fffde7', backgroundColor: '#f57c00', marginRight:10}
+    return {color: '#bef67a'}
   else
-    return {color: '#616161', backgroundColor: '#fffde7', border:'1px solid #f57c00', marginRight:10}
+    return {color: '#ffffff'}
 }
 const Menu = withRouter(({history}) => (
-  <AppBar position="fixed" style={{zIndex:12343455}}>
+  <AppBar position="static">
     <Toolbar>
       <Typography variant="h6" color="inherit">
-        MERN Classroom
+        MERN Marketplace
       </Typography>
       <div>
         <Link to="/">
@@ -33,10 +35,18 @@ const Menu = withRouter(({history}) => (
             <HomeIcon/>
           </IconButton>
         </Link>
+        <Link to="/shops/all">
+          <Button style={isActive(history, "/shops/all")}>All Shops</Button>
+        </Link>
+        <Link to="/cart">
+          <Button style={isActive(history, "/cart")}>
+            Cart
+            <Badge color="secondary" invisible={false} badgeContent={cart.itemTotal()} style={{'marginLeft': '7px'}}>
+              <CartIcon />
+            </Badge>
+          </Button>
+        </Link>      
       </div>
-      <Link to="/users">
-        <Button style={isActive(history, "/users")}>Users</Button>
-      </Link>
       <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
       {
         !auth.isAuthenticated() && (<span>
@@ -52,7 +62,7 @@ const Menu = withRouter(({history}) => (
       }
       {
         auth.isAuthenticated() && (<span>
-          {auth.isAuthenticated().user.educator && (<Link to="/teach/courses"><Button style={isPartActive(history, "/teach/")}><Library/> Teach</Button></Link>)}
+          {auth.isAuthenticated().user.seller && (<Link to="/seller/shops"><Button style={isPartActive(history, "/seller/")}>My Shops</Button></Link>)}
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
           </Link>

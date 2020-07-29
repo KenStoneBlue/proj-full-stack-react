@@ -8,9 +8,9 @@ import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
-import postRoutes from './routes/post.routes'
-import courseRoutes from './routes/course.routes'
-import enrollmentRoutes from './routes/enrollment.routes'
+import shopRoutes from './routes/shop.routes'
+import productRoutes from './routes/product.routes'
+import orderRoutes from './routes/order.routes'
 
 // modules for server side rendering
 import React from 'react'
@@ -46,23 +46,22 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 // mount routes
 app.use('/', userRoutes)
 app.use('/', authRoutes)
-app.use('/', postRoutes)
-app.use('/', courseRoutes)
-app.use('/', enrollmentRoutes)
+app.use('/', shopRoutes)
+app.use('/', productRoutes)
+app.use('/', orderRoutes)
 
 app.get('*', (req, res) => {
   const sheets = new ServerStyleSheets()
-
   const context = {}
   const markup = ReactDOMServer.renderToString(
-      sheets.collect(
-        <StaticRouter location={req.url} context={context}>
+    sheets.collect(
+      <StaticRouter location={req.url} context={context}>
           <ThemeProvider theme={theme}>
-            <MainRouter />
+            <MainRouter/>
           </ThemeProvider>
-        </StaticRouter>
-      )
-    )
+      </StaticRouter>
+     )
+  )
     if (context.url) {
       return res.redirect(303, context.url)
     }
