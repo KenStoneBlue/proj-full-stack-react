@@ -165,6 +165,7 @@ const list = async (req, res) => {
 
 const decreaseQuantity = async (req, res, next) => {
   let bulkOps = req.body.order.products.map((item) => {
+    console.log('bulkOps', bulkOps);
     return {
         "updateOne": {
             "filter": { "_id": item.product._id } ,
